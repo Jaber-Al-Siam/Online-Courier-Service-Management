@@ -6,7 +6,7 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.system('pip install -r requirements.txt')
+    # os.system('pip install -r requirements.txt') # uncomment this line if you running this file for the first time
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Online_Courier_Service_Management.settings')
     try:
         from django.core.management import execute_from_command_line
