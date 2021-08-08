@@ -35,14 +35,18 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'userapp',
+    'user',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'django_bootstrap5',
 ]
+
+CRISPY_TEMPLATE_PACK = 'django_bootstrap5'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -86,9 +90,10 @@ DATABASES = {
         'ENGINE': 'djongo',
         'CLIENT': {
             'name': "test",
-            'host': 'mongodb+srv://' + quote_plus(MONGODB_USER) + ':' + quote_plus(MONGODB_PASSWORD) +
-                    '@ocsmcluster.r1xvi.mongodb.net/test?retryWrites=true&w=majority',
-        }
+            'host': 'mongodb+srv://ocsmcluster.r1xvi.mongodb.net/test?retryWrites=true&w=majority',
+            'username': quote_plus(MONGODB_USER),
+            'password': quote_plus(MONGODB_PASSWORD),
+        },
     }
 }
 
@@ -129,6 +134,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'static'))
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'media'))
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

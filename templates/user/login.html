@@ -1,0 +1,38 @@
+{% extends "../base.html" %}
+{% load crispy_forms_tags %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+    <div class="content-section">
+        <form method="post" class="form">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Log In</legend>
+                {% bootstrap_form form %}
+{#                {{ form|crispy }}#}
+            </fieldset>
+            <div class="form-group">
+{#                {% buttons %}#}
+                    <button class="btn btn-outline-info" type="submit">Login</button>
+{#                {% endbuttons %}#}
+                {% comment %}
+                <br><br><small class="text-muted mu-2">
+                    <a href="{% url 'password_reset_page' %}">Forgot Password?</a>
+                </small>
+                {% endcomment %}
+            </div>
+        </form>
+        {% comment %}
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Need An Account? <a class="ml-2" href="{% url 'signup_page' %}">Sign Up Now</a>
+            </small>
+        </div>
+        {% endcomment %}
+    </div>
+{% endblock content %}
