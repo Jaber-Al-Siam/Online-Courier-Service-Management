@@ -17,22 +17,16 @@
 {#                {{ form|crispy }}#}
             </fieldset>
             <div class="form-group">
-{#                {% buttons %}#}
-                    <button class="btn btn-outline-info" type="submit">Login</button>
-{#                {% endbuttons %}#}
-                {% comment %}
+                <button class="btn btn-outline-info" type="submit">Login</button>
                 <br><br><small class="text-muted mu-2">
                     <a href="{% url 'password_reset_page' %}">Forgot Password?</a>
                 </small>
-                {% endcomment %}
             </div>
         </form>
-        {% comment %}
         <div class="border-top pt-3">
             <small class="text-muted">
                 Need An Account? <a class="ml-2" href="{% url 'signup_page' %}">Sign Up Now</a>
             </small>
         </div>
-        {% endcomment %}
     </div>
 {% endblock content %}
