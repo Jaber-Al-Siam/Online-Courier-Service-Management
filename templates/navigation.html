@@ -1,9 +1,7 @@
 <nav>
     <a href="{% url 'home_page' %}"><img src="../static/images/logo-courier.png" alt=""></a>
     <div class="nav-links" id="navLinks">
-
         <i class="fa fa-times" onclick="hideMenu()"></i>
-
         <ul>
             <li><a href="{% url 'home_page' %}">HOME</a></li>
             <li><a href="">ABOUT</a></li>
@@ -12,8 +10,15 @@
             <li><a href="">COST CALCULATOR</a></li>
             <li><a href="">CARRIER</a></li>
             <li><a href="">CONTACT</a></li>
-            <li><a href="">SignUp</a></li>
-            <li><a href="{% url 'login_page' %}">Login</a></li>
+
+            {% if user.is_authenticated %}
+                <li><a href="/admin/">Admin</a></li>
+                <li><a href="{% url 'profile_page' %}">Profile</a></li>
+                <li><a href="{% url 'logout_page' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login_page' %}">Login</a></li>
+                <li><a href="{% url 'signup_page' %}">SignUP</a></li>
+            {% endif %}
         </ul>
     </div>
     <i class="fa fa-bars" onclick="showMenu()"></i>
