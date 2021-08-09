@@ -19,7 +19,6 @@ from urllib.parse import quote_plus, quote_from_bytes
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -31,11 +30,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
-    'user',
+    'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,8 +43,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_bootstrap5',
 ]
-
-CRISPY_TEMPLATE_PACK = 'django_bootstrap5'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -63,7 +59,7 @@ ROOT_URLCONF = 'Online_Courier_Service_Management.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR, BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,7 +73,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Online_Courier_Service_Management.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -115,7 +110,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -129,17 +123,33 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'static'))
+STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, '/static/'))
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'media'))
+MEDIA_ROOT = os.path.normpath(os.path.join(BASE_DIR, '/media/'))
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRISPY_TEMPLATE_PACK = 'django_bootstrap5'
+
+LOGIN_REDIRECT_URL = 'home_page'
+
+LOGIN_URL = 'login_page'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = config('EMAIL_ID')
+EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
+
+STATICFILES_DIRS = [
+    BASE_DIR,
+]
