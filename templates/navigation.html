@@ -12,7 +12,7 @@
             <li><a href="">CONTACT</a></li>
 
             {% if user.is_authenticated %}
-                <li><a href="/admin/">Admin</a></li>
+                <li><a href="admin/">Admin</a></li>
                 <li><a href="{% url 'profile_page' %}">Profile</a></li>
                 <li><a href="{% url 'logout_page' %}">Logout</a></li>
             {% else %}
