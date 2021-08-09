@@ -10,7 +10,7 @@ urlpatterns: List[Any] = [
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login_page'),
     path('logout/', auth_views.LogoutView.as_view(template_name='logged_out.html'), name='logout_page'),
     path('password-reset/', auth_views.PasswordResetView.as_view(
-        template_name='password_reset.html'), name='password_reset_page'),
+        template_name='users/password_reset.html'), name='password_reset_page'),
     path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(
         template_name='password_reset_done.html'), name='password_reset_done_page'),
     path('password-reset-confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(
