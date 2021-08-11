@@ -127,7 +127,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'static/'))
+# STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'static/'))
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'media/'))
@@ -138,6 +138,7 @@ MEDIA_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'media/'))
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 LOGIN_REDIRECT_URL = 'home_page'
 
@@ -150,7 +151,6 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = config('EMAIL_ID')
 EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
 
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, "static"),
-# )
-
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
