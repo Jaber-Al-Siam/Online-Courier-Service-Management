@@ -9,15 +9,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 {#         <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/> #}
-
-        {% if title %}
-            <title> {{title}} </title>
-        {% else %}
-            <title> Courier Service </title>
-        {% endif %}
+        <title>{% block title %} Home {% endblock %}</title>
 
 {#        {% include 'navigation.html' %}#}
-        <link rel="stylesheet" href="../static/style.css">
+        <link rel="stylesheet" href=" {% static 'style.css' %}">
         <!-- font awesome CDN -->
 	    <script src="https://use.fontawesome.com/eb66dccf5d.js"></script>
         <!-- font color -->
