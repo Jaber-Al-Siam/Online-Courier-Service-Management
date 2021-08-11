@@ -1,4 +1,14 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% load bootstrap5 %}
 
 {% block title %} Signup {% endblock %}
-{% block content %} <h1>This is signup page</h1> {% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <div class="d-grid gap-2">
+            <button class="btn btn-outline-info" type="submit">Signup</button>
+        </div>
+    </form>
+{% endblock %}
