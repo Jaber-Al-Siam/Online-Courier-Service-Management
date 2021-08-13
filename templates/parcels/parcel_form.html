@@ -1,0 +1,12 @@
+{% load bootstrap5 %}
+{% bootstrap_css %}
+
+<body>
+  <form method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <div class="d-grid gap-2">
+            <button class="btn btn-outline-info" type="submit">Signup</button>
+        </div>
+  </form>
+</body>
