@@ -18,7 +18,7 @@ def viewOrUpdateProfile(request):
 
 class UserCreationView(View):
     form_class = SignupForm
-    template_name = 'users/signup.html'
+    template_name = 'registration/signup.html'
 
     def get(self, request):
         form = self.form_class()
