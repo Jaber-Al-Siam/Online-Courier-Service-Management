@@ -11,8 +11,10 @@
 {#         <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/> #}
         <title>{% block title %} Home {% endblock %}</title>
 
-{#        {% include 'navigation.html' %}#}
-        <link rel="stylesheet" href=" {% static 'style.css' %}">
+        {% include 'navigation.html' %}
+        {% block style %}
+            <link rel="stylesheet" href=" {% static 'style.css' %}">
+        {% endblock %}
         <!-- font awesome CDN -->
 	    <script src="https://use.fontawesome.com/eb66dccf5d.js"></script>
         <!-- font color -->
@@ -22,20 +24,7 @@
     </head>
 
     <body>
-        <section class="header">
-            {% include 'navigation.html' %}
-            <div class = "text-box">
-                <h1>Bangladesh's Biggest Courier System</h1>
-                <p>
-                    Online Courier is Bangladesh’s most trusted on-demand last mile logistics network offering
-                    tech-enabled one stop delivery solutions.<br> Our vision has been to become the operating
-                    system for e-commerce in Bangladesh, through a combination of world-class infrastructure,
-                    logistics operations of the highest quality and cutting-edge technology capabilities.
-                </p>
-                <a href="" class="hero-btn">Visit Us To know More</a>
-            </div>
-	    </section>
-
+    {% block body %} {% endblock %}
         <main role="main" class="container">
             {% if messages %}
                 {% for message in messages %}
@@ -44,7 +33,7 @@
                     </div>
                 {% endfor %}
             {% endif %}
-            {% block content %} {% endblock %}
+        {% block content %} {% endblock %}
         </main>
 
         <!-- Call to Action -->
