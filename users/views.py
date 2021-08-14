@@ -32,7 +32,6 @@ class UserCreationView(View):
             # raw_password = form.cleaned_data.get('password1')
             # user = authenticate(username=username, password=raw_password)
             messages.success(request, 'Your account created successfully, please login')
-            print("form saved")
             return redirect('login_page')
         else:
             form = self.form_class(request.POST)
