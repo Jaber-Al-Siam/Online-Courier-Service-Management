@@ -1,8 +1,17 @@
+.content-section {
+	background: #ffffff;
+	padding: 10px 20px;
+	border: 1px solid #dddddd;
+	border-radius: 3px;
+	margin-bottom: 20px;
+}
+
 *{
 	margin: 0;
 	padding: 0;
 	font-family: 'Poppins', sans-serif;
 }
+
 .header{
 	min-height: 100vh;
 	width: 100%;
@@ -12,6 +21,12 @@
 	background-size: cover;
 	position: relative;
 }
+
+.form {
+	padding: 25px 25px 25px 25px;
+	margin: 25px 25px 25px 25px;
+}
+
 nav{
 	display: flex;
 	padding: 2% 6%;
@@ -19,38 +34,50 @@ nav{
 	align-items: center;
 }
 
+.container {
+	border-style: dashed;
+	padding: 20px 20px 20px 20px;
+	margin: 20px 20px 20px 20px;
+}
+
 nav img{
 	width: 150px;
 
 }
+
 .nav-links{
 	flex: 1;
 	text-align: right;
 
 }
+
 .nav-links ul li{
 	list-style: none;
 	display: inline-block;
 	padding: 8px 12px;
 	position: relative;
 }
+
 .nav-links ul li a{
 	color: #fff;
 	text-decoration: none;
 	font-size: 13px;
 }
+
 .nav-links ul li::after{
 	content: '';
-	width: 0%;
+	width: 0;
 	height: 2px;
 	background: #f44336;
 	display: block;
 	margin: auto;
 	transition: 0.5s;
 }
+
 .nav-links ul li:hover::after{
 	width: 100%;
 }
+
 .text-box{
 	width: 90%;
 	color: #fff;
@@ -60,9 +87,11 @@ nav img{
 	transform: translate(-50%, -50%);
 	text-align: center;
 }
+
 .text-box h1{
 	font-size: 62px;
 }
+
 .text-box p{
 	margin: 10px 0 40px;
 	font-size: 14px;
@@ -130,10 +159,12 @@ nav .fa{
 	padding-top: 100px;
 
 }
+
 h1{
 	font-size: 36px;
 	font-weight: 600;
 }
+
 p{
 	color: #777;
 	font-size: 14px;
@@ -147,6 +178,7 @@ p{
 	display: flex;
 	justify-content: space-between;
 }
+
 .reason-col{
 	flex-basis: 31%;
 	background: #fff3f3;
@@ -155,14 +187,17 @@ p{
 	padding: 20px 12px;
 	box-sizing: border-box;
 }
+
 h3{
 	text-align: center;
 	font-weight: 600;
 	margin: 10px 0;
 }
+
 .reason-col:hover{
-	box-shadow: 0 0 20px 0px rgba(0,0,0,0.2);
+	box-shadow: 0 0 20px 0 rgba(0,0,0,0.2);
 }
+
 @media(max-width: 700px){
 	.row{
 		flex-direction: column;
@@ -190,6 +225,7 @@ h3{
 	width: 100%;
 	display: block;
 }
+
 .layer{
 	background: transparent;
 	height: 100%;
@@ -291,9 +327,9 @@ h3{
 	color: #f44336;
 }
 
-@media(max-width: 700){
+@media(max-width: 700px){
 	.review-col img{
-		margin-left: 0px;
+		margin-left: 0;
 		margin-right: 15px;
 	}
 }
