@@ -1,3 +1,9 @@
+<style>
+    nav {
+        background-color: #1b1b1b;
+    }
+</style>
+
 <nav>
     <a href="{% url 'home_page' %}"><img src="../static/images/logo-courier.png" alt=""></a>
     <div class="nav-links" id="navLinks">
@@ -13,8 +19,10 @@
 
             {% if user.is_authenticated %}
                 <li><a href="/admin/">Admin</a></li>
+                <li><a href="{% url 'parcels:create' %}">Parcels</a></li>
                 <li><a href="{% url 'profile_page' %}">Profile</a></li>
                 <li><a href="{% url 'logout_page' %}">Logout</a></li>
+
             {% else %}
                 <li><a href="{% url 'login_page' %}">Login</a></li>
                 <li><a href="{% url 'signup_page' %}">SignUP</a></li>
