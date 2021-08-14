@@ -85,13 +85,12 @@ MONGODB_PASSWORD = config('MONGO_PASSWORD')
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        # 'CLIENT': {
-        #     'name': "test",
-        #     'host': 'mongodb+srv://ocsmcluster.r1xvi.mongodb.net/test?retryWrites=true&w=majority',
-        #     'username': quote_plus(MONGODB_USER),
-        #     'password': quote_plus(MONGODB_PASSWORD),
-        # },
-        'NAME': 'test',
+        'CLIENT': {
+            'name': "test",
+            'host': 'mongodb+srv://ocsmcluster.r1xvi.mongodb.net/test?retryWrites=true&w=majority',
+            'username': quote_plus(MONGODB_USER),
+            'password': quote_plus(MONGODB_PASSWORD),
+        },
     }
 }
 
