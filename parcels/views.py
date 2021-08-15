@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Parcel
 
 
@@ -16,5 +16,15 @@ class ParcelDetailView(DetailView):
 
 
 class ParcelCreateView(CreateView):
+    model = Parcel
+    fields = ['type', 'city', 'street', 'zip', 'email', 'phone']
+
+
+class ParcelUpdateView(UpdateView):
+    model = Parcel
+    fields = ['type', 'city', 'street', 'zip', 'email', 'phone']
+
+
+class ParcelDeleteView(DeleteView):
     model = Parcel
     fields = ['type', 'city', 'street', 'zip', 'email', 'phone']
