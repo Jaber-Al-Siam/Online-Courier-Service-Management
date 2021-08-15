@@ -1,18 +1,21 @@
 from typing import Any, List
 from django.urls import path
-from users import views as users_views
+from users import views as customer_views
 from django.contrib.auth import views as auth_views
 
+app_name = 'users'
+
 urlpatterns: List[Any] = [
-    path('', users_views.home, name='home_page'),
-    path('signup/', users_views.UserCreationView.as_view(), name='signup_page'),
-    path('profile/', users_views.viewOrUpdateProfile, name='profile_page'),
-    path('login/', auth_views.LoginView.as_view(), name='login_page'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout_page'),
-    path('password-reset/', auth_views.PasswordResetView.as_view(), name='password_reset_page'),
-    path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done_page'),
+    path('', customer_views.home, name='home'),
+    path('signup/', customer_views.CustomerCreationView.as_view(), name='customer_signup'),
+    path('user/<int:pk>/', customer_views.UserDetailView.as_view(), name='user_detail'),
+    path('customer/<int:pk>/', customer_views.CustomerDetailView.as_view(), name='customer_detail'),
+    path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('password-reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
+    path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('password-reset-confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(),
-         name='password_reset_confirm_page'),
+         name='password_reset_confirm'),
     path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(),
-         name='password_reset_complete_page'),
+         name='password_reset_complete'),
 ]
