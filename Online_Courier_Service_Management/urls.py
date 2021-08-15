@@ -23,7 +23,7 @@ urlpatterns = [
     path('', include('django.contrib.auth.urls')),
     path('', include('users.urls')),
     path('', include('parcels.urls')),
-
+    path('', include('jobs.urls')),
 ]
 
 if settings.DEBUG:
