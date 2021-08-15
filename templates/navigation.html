@@ -1,3 +1,5 @@
+{% load static %}
+
 <style>
     nav {
         background-color: #1b1b1b;
@@ -5,11 +7,11 @@
 </style>
 
 <nav>
-    <a href="{% url 'home_page' %}"><img src="../static/images/logo-courier.png" alt=""></a>
+    <a href="{% url 'users:home' %}"><img src="{% static 'images/logo-courier.png' %}" alt=""></a>
     <div class="nav-links" id="navLinks">
         <i class="fa fa-times" onclick="hideMenu()"></i>
         <ul>
-            <li><a href="{% url 'home_page' %}">HOME</a></li>
+            <li><a href="{% url 'users:home' %}">HOME</a></li>
             <li><a href="">ABOUT</a></li>
             <li><a href="">BOOK PARCEL</a></li>
             <li><a href="">TRACK ORDER</a></li>
@@ -18,14 +20,16 @@
             <li><a href="">CONTACT</a></li>
 
             {% if user.is_authenticated %}
-                <li><a href="/admin/">Admin</a></li>
-                <li><a href="{% url 'parcels:parcel' %}">Parcels</a></li>
-                <li><a href="{% url 'profile_page' %}">Profile</a></li>
-                <li><a href="{% url 'logout_page' %}">Logout</a></li>
+                {% if user.is_superuser %}
+                    <li><a href="/admin/">Admin</a></li>
+                {% endif %}
+                <li><a href="{% url 'parcels:parcels' %}">Parcels</a></li>
+                <li><a href="{% url 'users:user_detail' user.id %}">Profile</a></li>
+                <li><a href="{% url 'users:logout' %}">Logout</a></li>
 
             {% else %}
-                <li><a href="{% url 'login_page' %}">Login</a></li>
-                <li><a href="{% url 'signup_page' %}">SignUP</a></li>
+                <li><a href="{% url 'users:login' %}">Login</a></li>
+                <li><a href="{% url 'users:customer_signup' %}">SignUP</a></li>
             {% endif %}
         </ul>
     </div>
