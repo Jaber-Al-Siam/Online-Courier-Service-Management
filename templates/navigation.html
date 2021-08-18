@@ -13,7 +13,7 @@
         <ul>
             <li><a href="{% url 'users:home' %}">HOME</a></li>
             <li><a href="">ABOUT</a></li>
-            <li><a href="">BOOK PARCEL</a></li>
+            <li><a href="{% url 'parcels:parcels' %}">PARCELS</a></li>
             <li><a href="">TRACK ORDER</a></li>
             <li><a href="">COST CALCULATOR</a></li>
             <li><a href="">CARRIER</a></li>
@@ -23,7 +23,6 @@
                 {% if user.is_superuser %}
                     <li><a href="/admin/">Admin</a></li>
                 {% endif %}
-                <li><a href="{% url 'parcels:parcels' %}">Parcels</a></li>
                 <li><a href="{% url 'users:user_detail' user.id %}">Profile</a></li>
                 <li><a href="{% url 'users:logout' %}">Logout</a></li>
 
