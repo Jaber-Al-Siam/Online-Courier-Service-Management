@@ -1,8 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import redirect
-from django.views.generic import DetailView, ListView
+from django.shortcuts import redirect, render
+from django.views.generic import DetailView, ListView, FormView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from .forms import ParcelTrackForm
 from .models import Parcel
 
 
@@ -40,3 +41,22 @@ class ParcelDeleteView(LoginRequiredMixin, DeleteView):
     model = Parcel
     fields = ['type', 'city', 'street', 'zip', 'email', 'phone']
     # success_url = 'parcels:parcels'
+    # fixme: having trouble here for success url
+
+
+class ParcelTrackView(FormView):
+    form_class = ParcelTrackForm
+    template_name = 'parcels/parcel_track.html'
+
+    def post(self, request, *args, **kwargs):
+        try:
+            parcel = Parcel.objects.get(pk=request.POST['parcel_id'])
+            print(parcel)
+            context = {
+                "object": parcel,
+            }
+            return render(request, 'parcels/parcel_detail.html', context)
+        except Exception as e:
+            print(str(e))
+            messages.error(request, 'Invalid parcel ID')
+            return redirect('parcels:track')
