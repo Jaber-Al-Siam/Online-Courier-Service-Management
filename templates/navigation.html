@@ -1,12 +1,6 @@
 {% load static %}
 
-<style>
-    nav {
-        background-color: #1b1b1b;
-    }
-</style>
-
-<nav>
+<nav style="background-color: #1b1b1b">
     <a href="{% url 'users:home' %}"><img src="{% static 'images/logo-courier.png' %}" alt=""></a>
     <div class="nav-links" id="navLinks">
         <i class="fa fa-times" onclick="hideMenu()"></i>
@@ -14,7 +8,7 @@
             <li><a href="{% url 'users:home' %}">HOME</a></li>
             <li><a href="">ABOUT</a></li>
             <li><a href="{% url 'parcels:parcels' %}">PARCELS</a></li>
-            <li><a href="">TRACK ORDER</a></li>
+            <li><a href="{% url 'parcels:track' %}">TRACK PARCEL</a></li>
             <li><a href="">COST CALCULATOR</a></li>
             <li><a href="">CARRIER</a></li>
             <li><a href="">CONTACT</a></li>
