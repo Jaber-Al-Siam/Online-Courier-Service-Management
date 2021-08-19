@@ -1,8 +1,9 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import redirect, render
 from django.views.generic import DetailView, ListView, FormView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
 from .forms import ParcelTrackForm
 from .models import Parcel
 
@@ -31,13 +32,18 @@ class ParcelCreateView(LoginRequiredMixin, CreateView):
         return redirect('parcels:parcels')
 
 
-class ParcelUpdateView(LoginRequiredMixin, UpdateView):
+class ParcelUpdateView(UserPassesTestMixin, UpdateView):
+    def test_func(self):
+        return self.request.user == self.get_object().booked_by
+
     model = Parcel
     template_name = 'parcels/parcel_update.html'
     fields = ['type', 'city', 'street', 'zip', 'email', 'phone']
 
 
-class ParcelDeleteView(LoginRequiredMixin, DeleteView):
+class ParcelDeleteView(UserPassesTestMixin, DeleteView):
+    def test_func(self):
+        return self.request.user == self.get_object().booked_by
     model = Parcel
     fields = ['type', 'city', 'street', 'zip', 'email', 'phone']
     # success_url = 'parcels:parcels'
