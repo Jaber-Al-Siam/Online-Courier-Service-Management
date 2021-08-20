@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
+{% load bootstrap5 %}
 
 {% block content %}
-    <div class="container">
+    <div class="content-section">
+        {% bootstrap_messages %}
         <h1>Parcels</h1>
         <ul>
         {% for parcel in object_list %}

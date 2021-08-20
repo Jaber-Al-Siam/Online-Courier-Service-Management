@@ -2,7 +2,8 @@
 {% load bootstrap5 %}
 
 {% block content %}
-    <div class="container">
+    <div class="content-section">
+        {% bootstrap_messages %}
         <h1>Parcel Type: {{ object.type }}</h1>
         <h1>Parcel ID: {{ object.id }}</h1>
         <fieldset>
@@ -14,9 +15,11 @@
             <p>Phone: {{ object.phone }}</p>
             <p>Status: {{ object.status }}</p>
         </fieldset>
-        <div class="d-grid gap-2">
-            <a href="{% url 'parcels:update' object.id %}"><button class="btn btn-outline-info" type="submit">Update Parcel</button></a>
-            <a href="{% url 'parcels:delete' object.id %}"><button class="btn btn-outline-info" type="submit">Delete Parcel</button></a>
-        </div>
+        {% if user.is_authenticated and user == object.booked_by %}
+            <div class="d-grid gap-2">
+                <a href="{% url 'parcels:update' object.id %}"><button class="btn btn-outline-info" type="submit">Update Parcel</button></a>
+                <a href="{% url 'parcels:delete' object.id %}"><button class="btn btn-outline-info" type="submit">Delete Parcel</button></a>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

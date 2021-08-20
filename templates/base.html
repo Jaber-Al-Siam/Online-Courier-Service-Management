@@ -2,7 +2,6 @@
 {% load bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
-{% bootstrap_messages %}
 
 <html lang="en">
     <head>
@@ -26,14 +25,7 @@
     <body>
     {% block body %} {% endblock %}
         <main role="main" class="container">
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-{{message.tags}}">
-                        {{message}}
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% block content %} {% endblock %}
+            {% block content %} {% endblock %}
         </main>
 
         <!-- Call to Action -->
