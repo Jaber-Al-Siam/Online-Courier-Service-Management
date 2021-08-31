@@ -15,14 +15,14 @@
 
             {% if user.is_authenticated %}
                 {% if user.is_superuser %}
-                    <li><a href="/admin/">Admin</a></li>
+                    <li><a href="/admin/">ADMIN</a></li>
                 {% endif %}
-                <li><a href="{% url 'users:user_detail' user.id %}">Profile</a></li>
-                <li><a href="{% url 'users:logout' %}">Logout</a></li>
+                <li><a href="{% url 'users:user_detail' user.id %}">PROFILE</a></li>
+                <li><a href="{% url 'users:logout' %}">LOGOUT</a></li>
 
             {% else %}
-                <li><a href="{% url 'users:login' %}">Login</a></li>
-                <li><a href="{% url 'users:customer_signup' %}">SignUP</a></li>
+                <li><a href="{% url 'users:login' %}">LOGIN</a></li>
+                <li><a href="{% url 'users:customer_signup' %}">SIGNUP</a></li>
             {% endif %}
         </ul>
     </div>
