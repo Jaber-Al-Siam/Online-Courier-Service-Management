@@ -483,14 +483,14 @@ h3{
 	transition: transform 1s;
 }
 
-/*form input{*/
-/*	!*problem hoitese etar jonne*!*/
-/*	width: 80%;*/
-/*	height: 30px;*/
-/*	margin: 10px 0;*/
-/*	padding: 0 10px;*/
-/*	border: 1px solid #ccc*/
-/*}*/
+form input{
+	/*problem hoitese etar jonne*/
+	width: 80%;
+	/*height: 30px;*/
+	margin: 10px 0;
+	padding: 0 10px;
+	border: 1px solid #ccc
+}
 
 form .hero-btn{
 	width: 100%;
