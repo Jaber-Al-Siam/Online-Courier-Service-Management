@@ -23,13 +23,11 @@ nav{
 
 nav img{
 	width: 150px;
-
 }
 
 .nav-links{
 	flex: 1;
 	text-align: right;
-
 }
 
 .nav-links ul li{
@@ -141,7 +139,6 @@ nav .fa{
 	margin: auto;
 	text-align: center;
 	padding-top: 100px;
-
 }
 
 h1{
@@ -187,7 +184,6 @@ h3{
 		flex-direction: column;
 	}
 }
-
 
 /*services*/
 .services{
@@ -348,7 +344,6 @@ h3{
 	width: 100%;
 	text-align: center;
 	padding: 30px 0;
-
 }
 
 .footer h4{
@@ -488,14 +483,14 @@ h3{
 	transition: transform 1s;
 }
 
-form input{
-	/*problem hoitese etar jonne*/
-	width: 80%;
-	height: 30px;
-	margin: 10px 0;
-	padding: 0 10px;
-	border: 1px solid #ccc
-}
+/*form input{*/
+/*	!*problem hoitese etar jonne*!*/
+/*	width: 80%;*/
+/*	height: 30px;*/
+/*	margin: 10px 0;*/
+/*	padding: 0 10px;*/
+/*	border: 1px solid #ccc*/
+/*}*/
 
 form .hero-btn{
 	width: 100%;
