@@ -1,6 +1,6 @@
 {% load static %}
 {% load bootstrap5 %}
-{% bootstrap_css %}
+{% block bootstrap_css %} {% endblock %}
 {% bootstrap_javascript %}
 
 <html lang="en">
@@ -11,9 +11,11 @@
         <title>{% block title %} Home {% endblock %}</title>
 
         {% include 'navigation.html' %}
-        {% block style %}
+        {% block override_style %}
             <link rel="stylesheet" href=" {% static 'style.css' %}">
         {% endblock %}
+        {% block add_style %}  {% endblock %}
+
         <!-- font awesome CDN -->
 	    <script src="https://use.fontawesome.com/eb66dccf5d.js"></script>
         <!-- font color -->
