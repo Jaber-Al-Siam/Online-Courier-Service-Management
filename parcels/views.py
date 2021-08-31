@@ -4,11 +4,34 @@ from django.shortcuts import redirect, render
 from django.views.generic import DetailView, ListView, FormView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-from .forms import ParcelTrackForm
+from .forms import ParcelTrackForm, CostCalculatorForm
 from .models import Parcel
 
 
 # Create your views here.
+
+def cost_calculator(request):
+    return render(request, 'cost_calculator.html')
+
+
+class CostCalculatorView(FormView):
+    form_class = CostCalculatorForm
+    template_name = 'parcels/cost_calculator.html'
+
+    def post(self, request, *args, **kwargs):
+        if request.POST['weight'] == '0':
+            messages.error(request, 'Weight cannot be 0')
+            return redirect('parcels:cost_calculator')
+        unit_price = 15.0
+        minimum_cost = 60.0
+        if request.POST['area'] == 'outside':
+            unit_price = 30.0
+            minimum_cost = 120.0
+
+        charge = max(minimum_cost, unit_price * float(request.POST['weight']))
+        messages.success(request, f'Estimated shipping cost is {charge} taka')
+        return redirect('parcels:cost_calculator')
+
 
 class ParcelListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
@@ -16,6 +39,7 @@ class ParcelListView(LoginRequiredMixin, ListView):
 
 
 class ParcelDetailView(LoginRequiredMixin, DetailView):
+
     model = Parcel
 
 
@@ -57,11 +81,10 @@ class ParcelTrackView(FormView):
     def post(self, request, *args, **kwargs):
         try:
             parcel = Parcel.objects.get(pk=request.POST['parcel_id'])
-            print(parcel)
             context = {
                 "object": parcel,
             }
-            return render(request, 'parcels/parcel_detail.html', context)
+            return render(request, 'parcels/' + parcel.status + '.html', context)
         except Exception as e:
             print(str(e))
             messages.error(request, 'Invalid parcel ID')
