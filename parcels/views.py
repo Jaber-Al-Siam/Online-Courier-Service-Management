@@ -39,8 +39,12 @@ class ParcelListView(LoginRequiredMixin, ListView):
 
 
 class ParcelDetailView(LoginRequiredMixin, DetailView):
-
     model = Parcel
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+        return render(request, 'parcels/' + self.object.status + '.html', context)
 
 
 class ParcelCreateView(LoginRequiredMixin, CreateView):
@@ -68,6 +72,7 @@ class ParcelUpdateView(UserPassesTestMixin, UpdateView):
 class ParcelDeleteView(UserPassesTestMixin, DeleteView):
     def test_func(self):
         return self.request.user == self.get_object().booked_by
+
     model = Parcel
     fields = ['type', 'city', 'street', 'zip', 'email', 'phone']
     # success_url = 'parcels:parcels'
@@ -81,10 +86,8 @@ class ParcelTrackView(FormView):
     def post(self, request, *args, **kwargs):
         try:
             parcel = Parcel.objects.get(pk=request.POST['parcel_id'])
-            context = {
-                "object": parcel,
-            }
-            return render(request, 'parcels/' + parcel.status + '.html', context)
+            print(parcel)
+            return redirect('parcels:detail', pk=parcel.pk)
         except Exception as e:
             print(str(e))
             messages.error(request, 'Invalid parcel ID')
