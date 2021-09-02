@@ -38,7 +38,7 @@ class ParcelListView(LoginRequiredMixin, ListView):
         return Parcel.objects.filter(booked_by=self.request.user)
 
 
-class ParcelDetailView(LoginRequiredMixin, DetailView):
+class ParcelDetailView(DetailView):
     model = Parcel
 
     def get(self, request, *args, **kwargs):
