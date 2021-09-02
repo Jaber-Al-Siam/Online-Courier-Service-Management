@@ -1,8 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.shortcuts import reverse
-from users.models import Customer
-
+from users.models import Customer, DeliveryAgent
 
 # Create your models here.
 
@@ -23,7 +22,8 @@ class Parcel(models.Model):
     email = models.CharField(max_length=100)
     phone = models.CharField(max_length=100)
     status = models.CharField(max_length=100, choices=STATUS, default='pending')
-    booked_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    booked_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='booked_by')
+    delivery_agent = models.ForeignKey(DeliveryAgent, on_delete=models.CASCADE)
 
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
