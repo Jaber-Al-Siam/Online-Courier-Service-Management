@@ -9,7 +9,7 @@
             <li><a href="{% url 'parcels:parcels' %}">PARCELS</a></li>
             <li><a href="{% url 'parcels:track' %}">TRACK PARCEL</a></li>
             <li><a href="{% url 'parcels:cost_calculator' %}">COST CALCULATOR</a></li>
-            <li><a href="">CARRIER</a></li>
+            <li><a href="{% url 'jobs:list' %}">CARRIER</a></li>
             <li><a href="">CONTACT</a></li>
 
             {% if user.is_authenticated %}
