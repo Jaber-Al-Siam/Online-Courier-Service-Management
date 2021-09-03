@@ -27,7 +27,6 @@ class Parcel(models.Model):
 
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
-        print('I am called')
 
     def get_absolute_url(self):
         return reverse('parcels:detail', kwargs={'pk': self.pk})
