@@ -21,7 +21,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-# todo: parcel list view, not important
-# todo: password recovery
-# todo: report issue
