@@ -8,7 +8,7 @@ from .models import Parcel
 @admin.register(Parcel)
 class ParcelAdmin(admin.ModelAdmin):
     list_display = ['id', 'status']
-    readonly_fields = ['booked_by', ]
+    readonly_fields = ['pickup_address', 'receiver', 'booked_by', ]
 
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
