@@ -12,10 +12,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 import urllib
 from pathlib import Path
-from decouple import config
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 from urllib.parse import quote_plus, quote_from_bytes
+
+from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -151,7 +151,7 @@ DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = config('EMAIL_ID')
+EMAIL_HOST_USER = config('EMAIL')
 EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
 
 STATICFILES_DIRS = (
