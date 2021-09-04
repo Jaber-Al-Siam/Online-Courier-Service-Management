@@ -5,7 +5,7 @@ from django.views.generic import DetailView, ListView, FormView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from .forms import ParcelTrackForm, CostCalculatorForm, AddressForm, ReceiverForm, ParcelForm
-from .models import Parcel, Address
+from .models import Parcel, Address, Issue
 
 
 # Create your views here.
@@ -49,7 +49,7 @@ class ParcelDetailView(DetailView):
 
 class ParcelCreateView(LoginRequiredMixin, CreateView):
     model = Parcel
-    fields = ['type', ]
+    fields = ['title', 'type', ]
     template_name = 'parcels/parcel_form.html'
 
     def get(self, request, *args, **kwargs):
@@ -82,7 +82,7 @@ class ParcelCreateView(LoginRequiredMixin, CreateView):
         parcel.booked_by = request.user
         parcel.save()
         messages.success(request, 'Your parcel has been placed successfully')
-        return redirect('parcels:parcels')
+        return redirect('parcels:list')
 
 
 class ParcelUpdateView(UserPassesTestMixin, UpdateView):
@@ -117,3 +117,16 @@ class ParcelTrackView(FormView):
             print(str(e))
             messages.error(request, 'Invalid parcel ID')
             return redirect('parcels:track')
+
+
+class IssueCreateView(CreateView):
+    model = Issue
+    fields = ['category', 'message', ]
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        issue = form.save(self)
+        issue.parcel = Parcel.objects.get(pk=kwargs['pk'])
+        print(kwargs)
+        issue.save()
+        return redirect('parcels:list')
