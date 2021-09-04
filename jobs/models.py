@@ -25,9 +25,15 @@ class Job(models.Model):
     def get_absolute_url(self):
         return reverse('jobs:detail', kwargs={'pk': self.pk})
 
+    def save(self, *args, **kwargs):
+        super(Job, self).save(*args, **kwargs)
+
 
 class Applicant(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
     resume = models.FileField()
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
+
+    def save(self, *args, **kwargs):
+        super(Applicant, self).save(*args, **kwargs)
