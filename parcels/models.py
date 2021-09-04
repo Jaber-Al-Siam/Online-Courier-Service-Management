@@ -13,12 +13,18 @@ class Address(models.Model):
     street = models.CharField(max_length=20)
     zip = models.CharField(max_length=20)
 
+    def save(self, *args, **kwargs):
+        super(Address, self).save(*args, **kwargs)
+
 
 class Receiver(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
     phone = models.CharField(max_length=20)
     address = models.OneToOneField(Address, on_delete=models.CASCADE)
+
+    def save(self, *args, **kwargs):
+        super(Receiver, self).save(*args, **kwargs)
 
 
 class Parcel(models.Model):
@@ -39,10 +45,10 @@ class Parcel(models.Model):
         ('picked', 'Picked'),
     ]
     title = models.CharField(max_length=100)
-    type = models.CharField(max_length=20, choices=TYPE, default=None)
+    type = models.CharField(max_length=20, choices=TYPE, blank=True)
     pickup_address = models.OneToOneField(Address, on_delete=models.CASCADE)
     receiver = models.OneToOneField(Receiver, on_delete=models.CASCADE)
-    status = models.CharField(max_length=100, choices=STATUS, default='pending')
+    status = models.CharField(max_length=100, choices=STATUS, default='pending', blank=True)
     booked_on = models.DateTimeField(auto_now_add=True, editable=False)
     booked_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='booked_by', editable=False)
     delivery_agent = models.ForeignKey(DeliveryAgent, blank=True, on_delete=models.CASCADE)
@@ -52,6 +58,9 @@ class Parcel(models.Model):
 
     def __str__(self):
         return str(self.pk)
+
+    def save(self, *args, **kwargs):
+        super(Parcel, self).save(*args, **kwargs)
 
 
 class Issue(models.Model):
@@ -65,8 +74,11 @@ class Issue(models.Model):
         ('processing', 'Processing'),
         ('solved', 'Solved'),
     ]
-    category = models.CharField(max_length=20, choices=CATEGORY, default=None)
-    status = models.CharField(max_length=20, choices=STATUS, default='pending')
+    category = models.CharField(max_length=20, choices=CATEGORY, blank=True)
+    status = models.CharField(max_length=20, choices=STATUS, blank=True)
     message = models.CharField(max_length=1000)
-    reply = models.CharField(max_length=1000)
+    reply = models.CharField(max_length=1000, blank=True)
     parcel = models.ForeignKey(Parcel, on_delete=models.CASCADE)
+
+    def save(self, *args, **kwargs):
+        super(Issue, self).save(*args, **kwargs)
