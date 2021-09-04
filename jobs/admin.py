@@ -14,6 +14,9 @@ class ApplicantAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'job', ]
     readonly_fields = ['job', ]
 
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+
 
 @admin.register(Job)
 class JobAdmin(admin.ModelAdmin):
