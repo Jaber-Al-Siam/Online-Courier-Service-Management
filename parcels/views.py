@@ -4,8 +4,8 @@ from django.shortcuts import redirect, render
 from django.views.generic import DetailView, ListView, FormView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-from .forms import ParcelTrackForm, CostCalculatorForm
-from .models import Parcel
+from .forms import ParcelTrackForm, CostCalculatorForm, AddressForm, ReceiverForm, ParcelForm
+from .models import Parcel, Address
 
 
 # Create your views here.
@@ -49,11 +49,36 @@ class ParcelDetailView(DetailView):
 
 class ParcelCreateView(LoginRequiredMixin, CreateView):
     model = Parcel
-    fields = ['type', 'city', 'street', 'zip', 'email', 'phone']
+    fields = ['type', ]
+    template_name = 'parcels/parcel_form.html'
+
+    def get(self, request, *args, **kwargs):
+        parcel_form = self.get_form()
+        pickup_address_form = AddressForm()
+        receiver_address_form = AddressForm()
+        receiver_form = ReceiverForm()
+        context = {
+            'parcel_form': parcel_form,
+            'pickup_address_form': pickup_address_form,
+            'receiver_form': receiver_form,
+            'receiver_address_form': receiver_address_form,
+        }
+        return render(request=request, template_name=self.get_template_names(), context=context)
 
     def post(self, request, *args, **kwargs):
-        form = self.get_form()
-        parcel = form.save(self)
+        parcel = ParcelForm(request.POST).save()
+        pickup_address = Address(country=request.POST.getlist('country')[0], city=request.POST.getlist('city')[0],
+                                 street=request.POST.getlist('street')[0], zip=request.POST.getlist('zip')[0])
+        pickup_address.save()
+        receiver_address = Address(country=request.POST.getlist('country')[1], city=request.POST.getlist('city')[1],
+                                   street=request.POST.getlist('street')[1], zip=request.POST.getlist('zip')[1])
+        receiver_address.save()
+
+        receiver = ReceiverForm(request.POST).save()
+        receiver.address = receiver_address
+        receiver.save()
+        parcel.pickup_address = pickup_address
+        parcel.receiver = receiver
         parcel.booked_by = request.user
         parcel.save()
         messages.success(request, 'Your parcel has been placed successfully')
