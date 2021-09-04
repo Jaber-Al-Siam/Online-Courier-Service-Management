@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.shortcuts import reverse
-import datetime
 
 from users.models import Customer, DeliveryAgent
 
@@ -53,3 +52,21 @@ class Parcel(models.Model):
 
     def __str__(self):
         return str(self.pk)
+
+
+class Issue(models.Model):
+    CATEGORY = [
+        ('delivery', 'Delivery'),
+        ('product', 'Product'),
+        ('delivery_agent', 'Delivery Agent')
+    ]
+    STATUS = [
+        ('pending', 'Pending'),
+        ('processing', 'Processing'),
+        ('solved', 'Solved'),
+    ]
+    category = models.CharField(max_length=20, choices=CATEGORY, default=None)
+    status = models.CharField(max_length=20, choices=STATUS, default='pending')
+    message = models.CharField(max_length=1000)
+    reply = models.CharField(max_length=1000)
+    parcel = models.ForeignKey(Parcel, on_delete=models.CASCADE)
