@@ -12,6 +12,7 @@ from .forms import CustomerCreationForm
 def home(request):
     return render(request, 'index.html')
 
+
 # fixme: think about the access of the views
 # todo: access modifier
 
@@ -19,6 +20,7 @@ def home(request):
 class UserDetailView(UserPassesTestMixin, generic.DetailView):
     def test_func(self):
         return True
+
     model = User
     template_name = 'users/user_detail.html'
 
@@ -26,6 +28,7 @@ class UserDetailView(UserPassesTestMixin, generic.DetailView):
 class CustomerDetailView(UserPassesTestMixin, generic.DetailView):
     def test_func(self):
         return True
+
     model = Customer
 
 
@@ -35,8 +38,9 @@ class CustomerCreationView(generic.edit.CreateView):
 
 
 class UserUpdateView(UserPassesTestMixin, generic.edit.UpdateView):
-    def test_func(self):
+    def test_func(self: UserPassesTestMixin) -> bool:
         return True
+
     model = User
     fields = ['username', 'first_name', 'last_name', 'email', ]
     # form_class = CustomerCreationForm
@@ -46,6 +50,7 @@ class UserUpdateView(UserPassesTestMixin, generic.edit.UpdateView):
 class CustomerUpdateView(UserPassesTestMixin, generic.edit.UpdateView):
     def test_func(self):
         return True
+
     model = Customer
     fields = ['first_name', 'last_name', 'phone', ]
     # form_class = CustomerCreationForm
@@ -55,5 +60,6 @@ class CustomerUpdateView(UserPassesTestMixin, generic.edit.UpdateView):
 class CustomerDeleteView(UserPassesTestMixin, generic.edit.DeleteView):
     def test_func(self):
         return True
+
     form_class = CustomerCreationForm
     template_name = 'users/customer_form.html'
