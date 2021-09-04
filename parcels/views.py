@@ -1,5 +1,7 @@
+from decouple import config
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.core.mail import send_mail
 from django.shortcuts import redirect, render
 from django.views.generic import DetailView, ListView, FormView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -82,6 +84,29 @@ class ParcelCreateView(LoginRequiredMixin, CreateView):
         parcel.booked_by = request.user
         parcel.save()
         messages.success(request, 'Your parcel has been placed successfully')
+
+        sender_message = "You are receiving this email because you have placed a new parcel at "
+        receiver_message = "You are receiving this email because a new parcel has been placed for your at "
+
+        message = f"{request.META['HTTP_HOST']}. Please visit our website to know more." + \
+                  f"\n\nYour parcel tracking ID: {parcel.id}" + \
+                  f"\n\nThanks for using our service!" + \
+                  f"\n\nThe {request.META['HTTP_HOST']} team"
+
+        send_mail(
+            subject='New Parcel',
+            message=sender_message + message,
+            from_email=config('EMAIL'),
+            recipient_list=[parcel.booked_by.email],
+        )
+
+        send_mail(
+            subject='New Parcel',
+            message=receiver_message + message,
+            from_email=config('EMAIL'),
+            recipient_list=[parcel.receiver.email],
+        )
+
         return redirect('parcels:list')
 
 
