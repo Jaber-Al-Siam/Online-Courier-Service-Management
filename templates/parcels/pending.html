@@ -1,9 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'parcels/parcel_detail.html' %}
 {% load static %}
 
 {% block override_style %} <link rel="stylesheet" href=" {% static 'parcels/css/style_pending.css' %}"> {% endblock %}
 
-{% block content %}
+{% block progress %}
     <!------ Track Parcel content ------->
 	<div class="progress">
 		<ul class="ul">

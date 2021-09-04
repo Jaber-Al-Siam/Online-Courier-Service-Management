@@ -1,26 +1,8 @@
 {% extends 'base.html' %}
-{% load bootstrap5 %}
-{% block bootstrap_css %} {% bootstrap_css %} {% endblock %}
+
+{% block override_style %}  {% endblock %}
 
 {% block content %}
-    <div class="content-section">
-        {% bootstrap_messages %}
-        <h1>Parcel Type: {{ object.type }}</h1>
-        <h1>Parcel ID: {{ object.id }}</h1>
-        <fieldset>
-            <legend class="border-bottom mb-4">Shipping Address</legend>
-            <p>City: {{ object.city }}</p>
-            <p>Street: {{ object.street }}</p>
-            <p>Zip: {{ object.zip }}</p>
-            <p>Email: {{ object.email }}</p>
-            <p>Phone: {{ object.phone }}</p>
-            <p>Status: {{ object.status }}</p>
-        </fieldset>
-        {% if user.is_authenticated and user == object.booked_by %}
-            <div class="d-grid gap-2">
-                <a href="{% url 'parcels:update' object.id %}"><button class="btn btn-outline-info" type="submit">Update Parcel</button></a>
-                <a href="{% url 'parcels:delete' object.id %}"><button class="btn btn-outline-info" type="submit">Delete Parcel</button></a>
-            </div>
-        {% endif %}
-    </div>
+    {% block progress %} {% endblock %}
+    <p align="center"><a href="{% url 'parcels:create_issue' object.pk %}" class="hero-btn red-btn">Create Issue</a></p>
 {% endblock %}
