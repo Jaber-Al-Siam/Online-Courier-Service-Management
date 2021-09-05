@@ -32,7 +32,7 @@ class Job(models.Model):
 class Applicant(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
-    resume = models.FileField()
+    resume = models.FileField(upload_to='jobs/applicants_resume')
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
 
     def save(self, *args, **kwargs):
