@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'jobs.apps.JobsConfig',
     'crispy_forms',
     'bootstrap5',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -111,6 +112,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
