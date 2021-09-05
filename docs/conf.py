@@ -128,9 +128,9 @@ celery_task_prefix = '(task)'  # < default
 autodoc_member_order = 'bysource'
 autodoc_inherit_docstrings = False
 
-apidoc_module_dir = '../myapp'
+apidoc_module_dir = '../'
 apidoc_output_dir = 'apidoc'
-apidoc_excluded_paths = ['../myapp/migrations']
+apidoc_excluded_paths = ['../migrations']
 apidoc_separate_modules = True
 apidoc_toc_file = False
 apidoc_module_first = True
