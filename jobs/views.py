@@ -19,7 +19,7 @@ class JobDetailView(views.generic.DetailView):
 
 class JobApplyView(views.generic.edit.CreateView):
     model = Applicant
-    fields = ['name', 'email', ]
+    fields = ['name', 'email', 'resume', ]
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
