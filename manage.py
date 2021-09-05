@@ -21,7 +21,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-# todo: documentation
-# todo: upload UI
