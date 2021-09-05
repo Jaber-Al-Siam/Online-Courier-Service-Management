@@ -17,6 +17,9 @@ class Customer(User):
         """
         return reverse('users:customer_detail', kwargs={'pk': self.pk})
 
+    # def save(self, *args, **kwargs):
+    #     super(Customer, self).save(*args, **kwargs)
+
     class Meta:
         verbose_name = 'customer'
         verbose_name_plural = 'customers'
@@ -25,6 +28,9 @@ class Customer(User):
 class DeliveryAgent(User):
     phone = models.CharField(max_length=20)
     User._meta.get_field('email')._unique = True
+
+    # def save(self, *args, **kwargs):
+    #     super(DeliveryAgent, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'delivery agent'
