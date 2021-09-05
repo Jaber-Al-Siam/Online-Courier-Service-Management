@@ -9,7 +9,12 @@ from .forms import CustomerCreationForm
 
 # Create your views here.
 
-def home(request):
+def home(request) -> render:
+    """
+    Function for requesting home page view
+    :param request: get request
+    :return: render with index.html
+    """
     return render(request, 'index.html')
 
 
@@ -18,7 +23,16 @@ def home(request):
 
 
 class UserDetailView(UserPassesTestMixin, generic.DetailView):
-    def test_func(self):
+    """
+    This class handles UserDetailView requests from User
+    :param model: Model
+    :param template_name: str
+    """
+    def test_func(self) -> bool:
+        """
+        Function for checking access of requesting user
+        :return: bool
+        """
         return True
 
     model = User
@@ -26,19 +40,32 @@ class UserDetailView(UserPassesTestMixin, generic.DetailView):
 
 
 class CustomerDetailView(UserPassesTestMixin, generic.DetailView):
-    def test_func(self):
+    """
+    This class handles CustomerDetailView requests from Customer
+    :param model: Model
+    """
+    def test_func(self: UserPassesTestMixin) -> bool:
         return True
 
     model = Customer
 
 
 class CustomerCreationView(generic.edit.CreateView):
+    """
+
+    """
     form_class = CustomerCreationForm
     template_name = 'users/customer_form.html'
 
 
 class UserUpdateView(UserPassesTestMixin, generic.edit.UpdateView):
+    """"""
+
     def test_func(self: UserPassesTestMixin) -> bool:
+        """
+
+        :return:
+        """
         return True
 
     model = User
@@ -48,7 +75,14 @@ class UserUpdateView(UserPassesTestMixin, generic.edit.UpdateView):
 
 
 class CustomerUpdateView(UserPassesTestMixin, generic.edit.UpdateView):
+    """
+
+    """
     def test_func(self):
+        """
+
+        :return:
+        """
         return True
 
     model = Customer
@@ -58,7 +92,14 @@ class CustomerUpdateView(UserPassesTestMixin, generic.edit.UpdateView):
 
 
 class CustomerDeleteView(UserPassesTestMixin, generic.edit.DeleteView):
+    """
+
+    """
     def test_func(self):
+        """
+
+        :return:
+        """
         return True
 
     form_class = CustomerCreationForm
