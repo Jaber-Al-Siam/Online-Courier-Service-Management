@@ -5,6 +5,8 @@ from users import views as customer_views
 
 app_name = 'users'
 
+"""Contains all the urls to access users views."""
+
 urlpatterns = [
     path('', customer_views.home, name='home'),
     path('signup/', customer_views.CustomerCreationView.as_view(), name='customer_signup'),

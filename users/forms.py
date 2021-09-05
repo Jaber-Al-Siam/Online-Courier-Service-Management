@@ -8,7 +8,7 @@ from .models import Customer
 
 class CustomerCreationForm(UserCreationForm):
     """
-    This form is to fill up inorder to create a customer account.
+    This form will be used to take information from the users to create customer account.
 
     :ivar first_name: First name of the customer.
     :vartype first_name: django.forms.CharField
@@ -17,7 +17,7 @@ class CustomerCreationForm(UserCreationForm):
     :vartype last_name: django.forms.CharField
 
     :ivar email: Email of the customer.
-    :vartype email: django.forms.CharField
+    :vartype email: django.forms.EmailField
 
     :ivar phone: Phone number of the customer.
     :vartype phone: django.forms.CharField

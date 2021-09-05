@@ -4,7 +4,7 @@ from django.shortcuts import reverse
 
 # Create your models here.
 
-"""List of models for users."""
+"""List of users models."""
 
 
 class Customer(User):
@@ -20,9 +20,6 @@ class Customer(User):
     def get_absolute_url(self):
         """
         Function for getting absolute url for customer objects.
-
-        :param self: Instance of Customer.
-        :type self: Customer
 
         :return: Absolute url of customer objects.
         :rtype: django.shortcuts.reverse
@@ -70,5 +67,4 @@ class DeliveryAgent(User):
         :vartype verbose_name_plural: str
         """
         verbose_name = 'delivery agent'
-
         verbose_name_plural = 'delivery Agents'

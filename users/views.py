@@ -9,7 +9,8 @@ from .forms import CustomerCreationForm
 
 # Create your views here.
 
-"""List of views of users."""
+"""List of users views."""
+
 
 def home(request):
     """
@@ -43,9 +44,6 @@ class UserDetailView(UserPassesTestMixin, generic.DetailView):
         """
         Function for checking access permission of requesting user to this view.
 
-        :param self: UserPassesTestMixin instance to check if user has access to this view
-        :type self: django.contrib.auth.mixins.UserPassesTestMixin
-
         :return: return true if user passes test
         :rtype: bool
         """
@@ -69,9 +67,6 @@ class CustomerDetailView(UserPassesTestMixin, generic.DetailView):
     def test_func(self):
         """
         Function for checking access permission of requesting user to this view.
-
-        :param self: UserPassesTestMixin instance to check if user has access to this view.
-        :type self: django.contrib.auth.mixins.UserPassesTestMixin
 
         :return: Return true if user passes test.
         :rtype: bool
@@ -114,9 +109,6 @@ class UserUpdateView(UserPassesTestMixin, generic.edit.UpdateView):
         """
         Function for checking access permission of requesting user to this view.
 
-        :param self: UserPassesTestMixin instance to check if user has access to this view.
-        :type self: django.contrib.auth.mixins.UserPassesTestMixin
-
         :return: Return true if user passes test.
         :rtype: bool
         """
@@ -145,9 +137,6 @@ class CustomerUpdateView(UserPassesTestMixin, generic.edit.UpdateView):
         """
         Function for checking access permission of requesting user to this view.
 
-        :param self: UserPassesTestMixin instance to check if user has access to this view.
-        :type self: django.contrib.auth.mixins.UserPassesTestMixin
-
         :return: Return true if user passes test.
         :rtype: bool
         """
@@ -169,9 +158,6 @@ class CustomerDeleteView(UserPassesTestMixin, generic.edit.DeleteView):
     def test_func(self):
         """
         Function for checking access permission of requesting user to this view.
-
-        :param self: UserPassesTestMixin instance to check if user has access to this view.
-        :type self: django.contrib.auth.mixins.UserPassesTestMixin
 
         :return: Return true if user passes test.
         :rtype: bool
