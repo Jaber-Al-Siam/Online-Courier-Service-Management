@@ -9,26 +9,17 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import ParcelTrackForm, CostCalculatorForm, AddressForm, ReceiverForm, ParcelForm
 from .models import Parcel, Address, Issue
 
+
 # Create your views here.
 
 """List of parcels views"""
 
 
 class CostCalculatorView(FormView):
-
     form_class = CostCalculatorForm
     template_name = 'parcels/cost_calculator.html'
 
     def post(self, request, *args, **kwargs):
-        """
-            Function for weight calculation.
-
-            :param request: Type of request from user.
-            :type request: self, request
-
-            :return: Return redirect view with parcels:cost_calculator.
-            :rtype: django.shortcuts.redirect
-        """
         if request.POST['weight'] == '0':
             messages.error(request, 'Weight cannot be 0')
             return redirect('parcels:cost_calculator')
@@ -40,9 +31,7 @@ class CostCalculatorView(FormView):
 
         charge = max(minimum_cost, unit_price * float(request.POST['weight']))
         messages.success(request, f'Estimated shipping cost is {charge} taka')
-
         return redirect('parcels:cost_calculator')
-
 
 
 class ParcelListView(LoginRequiredMixin, ListView):

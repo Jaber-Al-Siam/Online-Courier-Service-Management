@@ -85,9 +85,13 @@ MONGODB_PASSWORD = config('MONGO_PASSWORD')
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',# 'django.db.backends.sqlite3',
-       'NAME' :'blogs', #DB name
-       'USER':'root',#DB USER name <optional>
+        'ENGINE': 'djongo',
+        'CLIENT': {
+            'name': "test",
+            'host': 'mongodb+srv://ocsmcluster.r1xvi.mongodb.net/test?retryWrites=true&w=majority',
+            'username': quote_plus(MONGODB_USER),
+            'password': quote_plus(MONGODB_PASSWORD),
+        },
     }
 }
 
